@@ -77,8 +77,8 @@ async fn main() {
         });
 
         // --- Labels ---
-        draw_text("Left Eye (Nearsighted)", 80.0, 50.0, 30.0, BLACK);
-        draw_text("Right Eye (Farsighted)", screen_width - 400.0, 50.0, 30.0, WHITE);
+        draw_text("Bright area", 80.0, 50.0, 30.0, BLACK);
+        draw_text("Dark area", screen_width - 400.0, 50.0, 30.0, WHITE);
     
         // --- Animation logic ---
         obj_x += direction * 3.0;
