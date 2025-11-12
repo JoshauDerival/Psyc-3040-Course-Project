@@ -21,15 +21,60 @@ async fn main() {
         draw_rectangle(mid_x - 2.0, 0.0, 4.0, screen_height, Color::from_rgba(255, 255, 255, 160));
 
         // --- Moving object ---
-        // Distance from fusion line (affects blur)
-        let distance_from_mid = (obj_x - mid_x).abs();
-        let blur_factor = (1.0 - (distance_from_mid / (screen_width / 2.0))).clamp(0.0, 1.0);
+        let radius = 100.0;
+        let circle_pos = vec2(obj_x, mid_y);
+        let n_segments = 50;
 
-        // Object color fades (simulating blur)
-        let alpha = (255.0 * (1.0 - blur_factor * 0.9)) as u8;
-        let color = Color::from_rgba(255, 0, 0, alpha);
+        let mut vertices: Vec<Vertex> = Vec::with_capacity((n_segments + 2) as usize);
+        let mut indices: Vec<u16> = Vec::with_capacity((n_segments * 3) as usize);
 
-        draw_circle(obj_x, mid_y, 100.0, color);
+        // Helper function for color
+        let get_color_with_alpha = |x_pos: f32| {
+            let fade_width = 150.0; // Width of the fade effect
+            let dist_from_mid = (x_pos - mid_x).abs();
+            let alpha = (dist_from_mid / fade_width).clamp(0.0, 1.0);
+            Color::from_rgba(255, 0, 0, (255.0 * alpha) as u8)
+        };
+
+        // Center vertex
+        vertices.push(Vertex::new(
+            circle_pos.x,
+            circle_pos.y,
+            0.,
+            0.,
+            0.,
+            get_color_with_alpha(circle_pos.x),
+        ));
+
+        // Edge vertices
+        for i in 0..=n_segments {
+            let angle = i as f32 * (360. / n_segments as f32);
+            let vertex_pos = vec2(
+                circle_pos.x + angle.to_radians().cos() * radius,
+                circle_pos.y + angle.to_radians().sin() * radius,
+            );
+            vertices.push(Vertex::new(
+                vertex_pos.x,
+                vertex_pos.y,
+                0.,
+                0.,
+                0.,
+                get_color_with_alpha(vertex_pos.x),
+            ));
+        }
+
+        // Indices for triangle fan
+        for i in 1..=n_segments {
+            indices.push(0);
+            indices.push(i);
+            indices.push(i + 1);
+        }
+
+        draw_mesh(&Mesh {
+            vertices,
+            indices,
+            texture: None,
+        });
 
         // --- Labels ---
         draw_text("Left Eye (Nearsighted)", 80.0, 50.0, 30.0, BLACK);
