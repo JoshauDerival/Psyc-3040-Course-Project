@@ -1,0 +1,41 @@
+## 60-90 Second Video Script: What My Eyes See
+
+**Me (0-15 seconds):**
+My eyes see two completely different worlds at the same time. My right eye is nearsighted, so things up close are sharp, and my left eye is farsighted, so things far away are clear.
+
+This means my brain gets two different images, all day, every day. It's a constant battle in my head called binocular rivalry, where my brain has to fight to merge these images into one picture.
+
+**(Scene: Show simple diagrams illustrating Myopia and Hyperopia, perhaps labeled "My Right Eye" and "My Left Eye".)**
+
+**Me (15-35 seconds):**
+The real problem for me is high contrast. When I look from a bright area to a dark one, the two images are so different that my brain just... gives up. It can't decide which eye to trust. This creates a confusing, disorienting blind spot right in the middle of my vision. It's also because my eyes adapt to light at different speeds.
+
+To try and show you what this feels like, I built a small simulation.
+
+**(Scene: Cut to a screen recording of the code in `src/main.rs`. Highlight key lines as you speak.)**
+
+**Me (35-55 seconds):**
+I wrote this program to visualize my experience.
+
+First, I split the screen into a bright and a dark side. This mimics the high-contrast situations that give me the most trouble.
+
+
+Then, I have this red circle moving across the screen. This represents an object I'm trying to focus on.
+
+
+
+Most importantly, the circle fades out as it crosses from the dark to the bright side. This is my attempt at simulating that "blind spot" where my brain gets confused and loses track of the object for a second.
+
+```
+
+**(Scene: Show the final simulation running full-screen.)**
+
+**Me (55-75 seconds):**
+So this is what it looks like.
+
+As the circle crosses that center line, it almost vanishes. That's what it feels like. My brain receives two conflicting signals—one eye sees a clear object, the other sees a blurry one—and for a moment, the object just isn't there. It's a moment of pure visual confusion that I experience every day.
+
+**(Scene: Back to your face, with the simulation perhaps running small in the corner.)**
+
+**Me (75-90 seconds):**
+This is a little window into my world and the constant, invisible work my brain is doing just to see. It's a daily reminder of how complex our perception of reality really is. Thanks for letting me share it with you.
